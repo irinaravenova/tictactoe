@@ -1,0 +1,13 @@
+.cell {
+    width: 100px;
+    height: 100px;
+    display: inline;
+    margin: 5px;
+    border-radius: 10px;
+    border-width: 1px;
+    font-size: xx-large;
+}
+
+.cell:hover {
+    cursor: pointer;
+}
