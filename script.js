@@ -33,39 +33,58 @@ const gameBoard = (() => {
     
 })();
 
-
-const displayController = (() => {  
-    // object to control flow of game
-
-
-
-
-})();
-
 // Create player factory function (returns an object to use in our code)
 // Will encapsulate all the things our players can do (functions)
 
 const Player = (() => {
 
-    let currentPlayer;
+    let form = document.getElementById("myForm");
+    let listPlayers = document.getElementById("listPlayers");
+    let listButton = document.querySelector("players");
 
-    const getPlayer = () => {
-        let player1 = document.getElementById("name").value;
-        console.log(player1);
-        return player1;
+    // Get player names from form input
+    const listenForPlayers = () => {    
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let player1 = document.getElementById("nameA").value;
+            let player2 = document.getElementById("nameB").value;
+            result = [ player1, player2 ];
+            console.log(result);
+
+            for (player in result) {
+                let players = document.createElement("p");
+                players.innerHTML = `${result[player]}`;
+                listPlayers.appendChild(players);
+            }
+
+            return result;
+        });
     }
 
-    return { getPlayer };
+
+
+    return { listenForPlayers };
 
 })();
 
 
+const displayController = (() => {  
+    // object to control flow of game
+
+    // Add cell click event listeners
+    // each click, po
+
+
+
+
+})();
+
+
+
+Player.listenForPlayers();
 gameBoard.getBoard();
 
-let submitBtn = document.getElementById("submit");
-submitBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-   console.log(Player.getPlayer());
-});
+
+
 
 

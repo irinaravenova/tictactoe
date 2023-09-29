@@ -7,12 +7,18 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <form action="">
-        <label for="name">Enter your name:</label>
-        <input type="text" autocomplete="off" name="name" id="name">
+    <form action="" id="myForm">
+        <label for="nameA">Enter your name 1:</label>
+        <input type="text" autocomplete="off" name="name" id="nameA" required>
+        <label for="nameB">Enter your name 2:</label>
+        <input type="text" autocomplete="off" name="name" id="nameB" required>
         <button type="submit" name="submit" id="submit">Submit</button>
     </form>
     <h1 class="class">The current player is:<span class="currentPlayer"></span></h1>
+    <button id="listPlayers">Click to list players</button>
+    <div class="players">
+
+    </div>
     <div class="gameboard">
 
     </div>
