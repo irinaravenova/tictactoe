@@ -39,11 +39,16 @@ const gameBoard = (() => {
 
 const Player = (() => {
     
+    let cellsArray = ["", "", "", "", "", "", "", "", ""];
+
+
     // Create current player variable
     let currentPlayer;
 
     let form = document.getElementById("myForm");
     let players = document.querySelector(".players");
+    let announcement = document.querySelector('.announce');
+
 
     // Get player names from form input 
     const listenForPlayers = () => {    
@@ -76,16 +81,28 @@ const Player = (() => {
 
         let cell = document.querySelectorAll(".cell");
 
+
         cell.forEach((cell) => {
             cell.addEventListener('click', (e) => {
                 e.preventDefault();
 
+                if (typeof playersArray === 'undefined') {
+                    alert('Please enter player names')
+                    location.reload();
+                }
+
                 // Populate cell with player choice on click
                 if ( currentPlayer == playersArray[0] ) {
                     e.target.innerHTML = "X";
+                    let val = cell.id;
+                    cellsArray[val-1] = "X";
+                    console.log(cellsArray)
                 }
                 else if ( currentPlayer == playersArray[1] ) {
                     e.target.innerHTML = "O";
+                    let val = cell.id;
+                    cellsArray[val-1] = "O";
+                    console.log(cellsArray)
                 }
 
                 // Switch players on click of cell
@@ -94,38 +111,90 @@ const Player = (() => {
                 ( currentPlayer = playersArray[0] );
 
                 console.log(currentPlayer);
-                displayController.checkWinner();
+                checkWinner();
+                // displayController.checkWinner();
                 return currentPlayer;
-            })
+            }, {once : true})
         })
-
-
     }
 
-    return { listenForPlayers, switchPlayers };
-
-})();
-
-
-const displayController = (() => {  
-    // Object to control flow of game
-
-    // let updatedGameboard = [["", "", ""], ["", "",""], ["", "", ""]]; 
-
-    // Function comparing cell contents to check for winner
     const checkWinner = () => {
-        let cell = document.querySelectorAll(".cell");
+        // Check array winning conditions
+        // let cellsArray = ["", "", "", "", "", "", "", "", ""];
 
-        cell.forEach((cell) => {
-            console.log(cell.id)
-        })
-     
-    }
+        if (cellsArray[0] == 'X' && cellsArray[1] == 'X' && cellsArray[2] == 'X') {
+            players.innerHTML = `${playersArray[0]} wins!`;
+        }
+        if (cellsArray[0] == 'X' && cellsArray[3] == 'X' && cellsArray[6] == 'X') {
+            players.innerHTML = `${playersArray[0]} wins!`;
+        }
+        if (cellsArray[0] == 'X' && cellsArray[4] == 'X' && cellsArray[8] == 'X') {
+            players.innerHTML = `${playersArray[0]} wins!`;
+        }
+        if (cellsArray[2] == 'X' && cellsArray[5] == 'X' && cellsArray[8] == 'X') {
+            players.innerHTML = `${playersArray[0]} wins!`;
+        }
+        if (cellsArray[1] == 'X' && cellsArray[4] == 'X' && cellsArray[7] == 'X') {
+            players.innerHTML = `${playersArray[0]} wins!`;
+        }
+        if (cellsArray[2] == 'X' && cellsArray[4] == 'X' && cellsArray[6] == 'X') {
+            players.innerHTML = `${playersArray[0]} wins!`;
+        }
+        if (cellsArray[3] == 'X' && cellsArray[4] == 'X' && cellsArray[5] == 'X') {
+            players.innerHTML = `${playersArray[0]} wins!`;
+        }
+        if (cellsArray[6] == 'X' && cellsArray[7] == 'X' && cellsArray[8] == 'X') {
+            players.innerHTML = `${playersArray[0]} wins!`;
+        }
+
+        //
+
+        if (cellsArray[0] == 'O' && cellsArray[1] == 'O' && cellsArray[2] == 'O') {
+            players.innerHTML = `${playersArray[1]} wins!`;
+        }
+        if (cellsArray[0] == 'O' && cellsArray[3] == 'O' && cellsArray[6] == 'O') {
+            players.innerHTML = `${playersArray[1]} wins!`;
+        }
+        if (cellsArray[0] == 'O' && cellsArray[4] == 'O' && cellsArray[8] == 'O') {
+            players.innerHTML = `${playersArray[1]} wins!`;
+        }
+        if (cellsArray[2] == 'O' && cellsArray[5] == 'O' && cellsArray[8] == 'O') {
+            players.innerHTML = `${playersArray[1]} wins!`;
+        }
+        if (cellsArray[1] == 'O' && cellsArray[4] == 'O' && cellsArray[7] == 'O') {
+            players.innerHTML = `${playersArray[1]} wins!`;
+        }
+        if (cellsArray[2] == 'O' && cellsArray[4] == 'O' && cellsArray[6] == 'O') {
+            players.innerHTML = `${playersArray[1]} wins!`;
+        }
+        if (cellsArray[3] == 'O' && cellsArray[4] == 'O' && cellsArray[5] == 'O') {
+            players.innerHTML = `${playersArray[1]} wins!`;
+        }
+        if (cellsArray[6] == 'O' && cellsArray[7] == 'O' && cellsArray[8] == 'O') {
+            players.innerHTML = `${playersArray[1]} wins!`;
+        }
 
 
-    return { checkWinner };
+
+    };
+
+    return { listenForPlayers, switchPlayers, checkWinner };
 
 })();
+
+
+// const displayController = (() => {  
+//     // Object to control flow of game
+//     // let updatedGameboard = [["", "", ""], ["", "",""], ["", "", ""]]; 
+//     // Function comparing cell contents to check for winner
+//     const checkWinner = () => {
+//         let cell = document.querySelectorAll(".cell");
+//         cell.forEach((cell) => {
+//             console.log(cell.id)
+//         })
+//     }
+//     return { checkWinner };
+// })();
 
 
 
@@ -133,7 +202,7 @@ const displayController = (() => {
 gameBoard.getBoard();
 Player.listenForPlayers();
 Player.switchPlayers();
-displayController.checkWinner();
+// displayController.checkWinner();
 
 
 
