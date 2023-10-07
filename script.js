@@ -1,8 +1,5 @@
 const gameBoard = (() => {       
 
-    // gameBoard object - use module
-    // store gameboard as an array inside of Gameboard object
-
     const getBoard = () => {
 
     let gameboard = [["", "", ""], ["", "",""], ["", "", ""]]; 
@@ -28,19 +25,15 @@ const gameBoard = (() => {
             }
         }
     }
-
     
     return { getBoard };
     
 })();
 
-// Create player factory function (returns an object to use in our code)
-// Will encapsulate all the things our players can do (functions)
 
 const Player = (() => {
     
     let cellsArray = ["", "", "", "", "", "", "", "", ""];
-
 
     // Create current player variable
     let currentPlayer;
@@ -120,7 +113,6 @@ const Player = (() => {
 
     const checkWinner = () => {
         // Check array winning conditions
-        // let cellsArray = ["", "", "", "", "", "", "", "", ""];
 
         if (cellsArray[0] == 'X' && cellsArray[1] == 'X' && cellsArray[2] == 'X') {
             players.innerHTML = `${playersArray[0]} wins!`;
@@ -147,7 +139,7 @@ const Player = (() => {
             players.innerHTML = `${playersArray[0]} wins!`;
         }
 
-        //
+        
 
         if (cellsArray[0] == 'O' && cellsArray[1] == 'O' && cellsArray[2] == 'O') {
             players.innerHTML = `${playersArray[1]} wins!`;
@@ -174,8 +166,6 @@ const Player = (() => {
             players.innerHTML = `${playersArray[1]} wins!`;
         }
 
-
-
     };
 
     return { listenForPlayers, switchPlayers, checkWinner };
@@ -183,26 +173,9 @@ const Player = (() => {
 })();
 
 
-// const displayController = (() => {  
-//     // Object to control flow of game
-//     // let updatedGameboard = [["", "", ""], ["", "",""], ["", "", ""]]; 
-//     // Function comparing cell contents to check for winner
-//     const checkWinner = () => {
-//         let cell = document.querySelectorAll(".cell");
-//         cell.forEach((cell) => {
-//             console.log(cell.id)
-//         })
-//     }
-//     return { checkWinner };
-// })();
-
-
-
-
 gameBoard.getBoard();
 Player.listenForPlayers();
 Player.switchPlayers();
-// displayController.checkWinner();
 
 
 
